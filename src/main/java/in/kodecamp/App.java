@@ -1,16 +1,19 @@
 package in.kodecamp;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import in.kodecamp.ui.Page;
 
 /**
  * Hello world!
@@ -30,29 +33,67 @@ public class App {
   public static void main(String[] args) throws IOException, TemplateException {
     System.out.println("Hello World!");
     String templateName = "welcome.html";
-    Template welcomeTemplate = cfg.getTemplate(templateName);
+    Template welcomeTemplate = cfg.getTemplate("/views/" + templateName + ".ftl");
     System.out.println(welcomeTemplate);
-    Map<String,Object> model = createModel();
+    Map<String, Object> model = createModel();
     OutputStreamWriter htmlWriter = new OutputStreamWriter(
-        new FileOutputStream("./src/main/resources/views/"+templateName));
-    OutputStreamWriter consoleWriter = new OutputStreamWriter(System.out);
-    welcomeTemplate.process(model,htmlWriter) ;
+        new FileOutputStream("./src/main/resources/templates/views/" + templateName));
+//    OutputStreamWriter consoleWriter = new OutputStreamWriter(System.out);
+    welcomeTemplate.process(model, htmlWriter);
   }
 
+  /**
+   * 
+   * @return
+   */
   private static Map<String, Object> createModel() {
     // Create the root hash. We use a Map here, but it could be a JavaBean too.
     Map<String, Object> root = new HashMap<>();
 
-// Put string "user" into the root
-    root.put("user", "Big Joe");
-
-// Create the "latestProduct" hash. We use a JavaBean here, but it could be a Map too.
-    Product latest = new Product();
-    latest.setUrl("products/greenmouse.html");
-    latest.setName("green mouse");
-// and put it into the root
-    root.put("latestProduct", latest);
+    // and put it into the root
+    root.put("products", createProducts());
+    Page page = new Page().appendHeaderValue("title", "Welcome ...")
+        .appendHeaderValue("pageTitle", "Welcome Page").appendHeaderValue("links", createLinks());
+    root.put("page", page);
     return root;
+
   }
- 
+
+  /**
+   * 
+   * @return
+   */
+  private static Map<String, String> createLinks() {
+    Map<String, String> links = new LinkedHashMap<>();
+    links.put("Link 1", "http://domain.com/link1");
+    links.put("Link 2", "http://domain.com/link2");
+    links.put("Link 3", "http://domain.com/link3");
+    return links;
+
+  }
+
+  private static List<Product> createProducts() {
+    List<Product> products = new ArrayList<>();
+
+    Product p1 = new Product();
+    p1.setUrl("products/greenmouse.html");
+    p1.setName("Green Mouse");
+    p1.setPrice(100);
+
+    Product p2 = new Product();
+    p2.setUrl("products/whitemouse.html");
+    p2.setName("White Mouse");
+    p2.setPrice(200);
+
+    Product p3 = new Product();
+    p3.setUrl("products/whitekeyboard.html");
+    p3.setName("White Keyboard");
+
+    products.add(p1);
+    products.add(p2);
+    products.add(p3);
+
+    return products;
+  }
+
 }
