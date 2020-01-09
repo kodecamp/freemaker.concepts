@@ -6,7 +6,7 @@
     <#list pageValues.products as product>
     <#-- using user defined macro -->
         <@productUtils.productDetails p=product isVertical=true
-        color=(product?index%2 == 0)?then('darkgray','tomato')/> 
+        background\-color=(product?index%2 == 0)?then('darkgray','tomato') border = "1px solid #323232"/> 
     </#list>
   </div>
 </div>
@@ -15,18 +15,18 @@
       <span class="page-no">${no}</span>
     </#list>
 </div>
-<#-- 
-<#macro productDetails p isVertical color>
-  <div class='inline-box ${isVertical?then("vertical","horizontal")}' style="background:${color}">
-    <p style="font-weight: bold;">${p.name}</p>
-    <p>${p.url}</p>
-    <p>${p.price}</p>
-  </div>
-</#macro>
- -->
- <#assign x = 0>
- <#list 100..110 as pos> 
-   <span>${x} -> ${pos}</span>
-   <#assign x+=1>
- </#list>
+</br>
+</br>
+</br>
+<div style="text-align:center;">
+   <#assign x = 0>
+   <#list 100..110 as pos> 
+     <#if pos%2 == 0>
+       <span>${x}</span> -> <span class="page-no" style="border: 2px solid seagreen">${pos}</span>
+       <#else>
+         <span>${x}</span> -> <span class="page-no" style="border: 2px solid purple">${pos}</span>
+     </#if>
+     <#assign x+=1>
+   </#list>
+</div>
 <#include "/common/footer.ftl">

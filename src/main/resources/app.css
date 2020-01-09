@@ -96,6 +96,7 @@ table th {
 .inline-box {
 	display: flex;
 	background: lightgray;
+	margin: 5px 5px;
 }
 
 .horizontal {
