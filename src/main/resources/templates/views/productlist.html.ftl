@@ -22,9 +22,9 @@
    <#assign x = 0>
    <#list 100..110 as pos> 
      <#if pos%2 == 0>
-       <span>${x}</span> -> <span class="page-no" style="border: 2px solid seagreen">${pos}</span>
+       <span class="circle">${x}</span> → <span class="page-no" style="background:seagreen;color: white;">${pos}</span>
        <#else>
-         <span>${x}</span> -> <span class="page-no" style="border: 2px solid purple">${pos}</span>
+         <span class="circle">${x}</span> → <span class="page-no" style="background: purple; color: white;">${pos}</span>
      </#if>
      <#assign x+=1>
    </#list>

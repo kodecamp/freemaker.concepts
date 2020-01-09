@@ -4,7 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,7 @@ public class App {
 
   public static void main(String[] args) throws IOException, TemplateException {
     System.out.println("Hello World!");
-    String templateName = "welcome.html";
+    String templateName = "productlist.html";
     Template welcomeTemplate = cfg.getTemplate("/views/" + templateName + ".ftl");
     System.out.println(welcomeTemplate);
     Page model = createModel();
@@ -48,9 +47,8 @@ public class App {
    */
   private static Page createModel() {
     // Create the root hash. We use a Map here, but it could be a JavaBean too.
-    Page page = new Page()
+    Page page = new Page("Product List")
         .addHeaderValue("title", "Welcome ...")
-        .addHeaderValue("pageTitle", "Welcome Page")
         .addHeaderValue("links", createLinks())
         .addPageValue("products",createProducts());
     // and put it into the root

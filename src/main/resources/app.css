@@ -10,7 +10,7 @@ body {
 
 header {
 	background: #161616;
-	color: #161616;
+	color: #f1f1f1;
 	display: flex;
 	line-height: 60px;
 	justify-content: space-between;
@@ -84,7 +84,7 @@ table th {
 
 .page-no {
   padding: 8px;	
-  border: 1px dashed lightgray;
+  border: 1px solid lightgray;
   background: lightgray;
 }
 
@@ -109,4 +109,13 @@ table th {
 
 .inline-box p {
 	padding: 4px;
+}
+
+.circle {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: black;
+	color: white;
 }

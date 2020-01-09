@@ -1,11 +1,11 @@
 <html>
   <head>
-    <title>${title!"Missing"}</title> 
+    <title>${headerValues.title!"Missing"}</title> 
     <link href="../../app.css" rel="stylesheet"/>
   </head>
   <body>
     <header>
-      <h3>Logo</h3>
+      <h3>Logo</h3> 
       <ul>
       <#list headerValues.links as link, value>
         <li>
@@ -14,3 +14,4 @@
       </#list>
       </ul>
     </header>
+    <h3>${pageTitle}</h3>

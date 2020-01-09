@@ -4,24 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Page {
-  private String title;
+  private String pageTitle;
   private Map<String, Object> headerValues;
   private Map<String, Object> footerValues;
   private Map<String,Object> pageValues;
 
-  public Page(final String title, Map<String, Object> header, Map<String, Object> footer, Map<String,Object> values) {
-     this.title = title;
+  public Page(final String pageTitle, Map<String, Object> header, Map<String, Object> footer, Map<String,Object> values) {
+     this.pageTitle = pageTitle;
      this.headerValues = header;
      this.footerValues = footer;
      this.pageValues = values;
+  }
+  
+  public Page(final String pageTitle) {
+    this(pageTitle,new HashMap<>(),new HashMap<>(), new HashMap<>());
   }
   
   public Page() {
     this("", new HashMap<>(), new HashMap<>(), new HashMap<>());
   }
   
-  public Page withTitle(final String newTitle) {
-    this.title = newTitle;
+  public Page withPageTitle(final String newTitle) {
+    this.pageTitle = newTitle;
     return this;
   }
   
@@ -51,8 +55,8 @@ public class Page {
   }
 
 
-  public String getTitle() {
-    return title;
+  public String getPageTitle() {
+    return this.pageTitle;
   }
 
   public Map<String, Object> getHeaderValues() {
