@@ -35,7 +35,7 @@ public class App {
     String templateName = "welcome.html";
     Template welcomeTemplate = cfg.getTemplate("/views/" + templateName + ".ftl");
     System.out.println(welcomeTemplate);
-    Map<String, Object> model = createModel();
+    Page model = createModel();
     OutputStreamWriter htmlWriter = new OutputStreamWriter(
         new FileOutputStream("./src/main/resources/templates/views/" + templateName));
 //    OutputStreamWriter consoleWriter = new OutputStreamWriter(System.out);
@@ -46,16 +46,15 @@ public class App {
    * 
    * @return
    */
-  private static Map<String, Object> createModel() {
+  private static Page createModel() {
     // Create the root hash. We use a Map here, but it could be a JavaBean too.
-    Map<String, Object> root = new HashMap<>();
-
+    Page page = new Page()
+        .addHeaderValue("title", "Welcome ...")
+        .addHeaderValue("pageTitle", "Welcome Page")
+        .addHeaderValue("links", createLinks())
+        .addPageValue("products",createProducts());
     // and put it into the root
-    root.put("products", createProducts());
-    Page page = new Page().appendHeaderValue("title", "Welcome ...")
-        .appendHeaderValue("pageTitle", "Welcome Page").appendHeaderValue("links", createLinks());
-    root.put("page", page);
-    return root;
+    return page;
 
   }
 

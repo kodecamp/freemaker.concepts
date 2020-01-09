@@ -1,19 +1,11 @@
 <#include "/common/header.ftl">
-
-<#-- This is user defined macro -->
-<#macro productDetails p isVertical color>
-  <div class='inline-box ${isVertical?then("vertical","horizontal")}' style="background:${color}">
-    <p style="font-weight: bold;">${p.name}</p>
-    <p>${p.url}</p>
-    <p>${p.price}</p>
-  </div>
-</#macro>
+<#import "/common/products.util.ftl" as productUtils> 
 
 <div class="container center">
   <div>
-    <#list products as product>
+    <#list pageValues.products as product>
     <#-- using user defined macro -->
-        <@productDetails p=product isVertical=false 
+        <@productUtils.productDetails p=product isVertical=true
         color=(product?index%2 == 0)?then('darkgray','tomato')/> 
     </#list>
   </div>
@@ -23,5 +15,18 @@
       <span class="page-no">${no}</span>
     </#list>
 </div>
-
+<#-- 
+<#macro productDetails p isVertical color>
+  <div class='inline-box ${isVertical?then("vertical","horizontal")}' style="background:${color}">
+    <p style="font-weight: bold;">${p.name}</p>
+    <p>${p.url}</p>
+    <p>${p.price}</p>
+  </div>
+</#macro>
+ -->
+ <#assign x = 0>
+ <#list 100..110 as pos> 
+   <span>${x} -> ${pos}</span>
+   <#assign x+=1>
+ </#list>
 <#include "/common/footer.ftl">

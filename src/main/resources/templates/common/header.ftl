@@ -1,13 +1,13 @@
 <html>
   <head>
-    <title>${page.header.title!"Missing"}</title> 
+    <title>${title!"Missing"}</title> 
     <link href="../../app.css" rel="stylesheet"/>
   </head>
   <body>
     <header>
       <h3>Logo</h3>
       <ul>
-      <#list page.header.links as link, value>
+      <#list headerValues.links as link, value>
         <li>
           <a href="${value}">${link}</a>
         </li>
